@@ -1,0 +1,12 @@
+body{
+    background:#0f172a;
+    color:white;
+}
+
+.container{
+    max-width:900px;
+}
+
+h1,h2{
+    color:#38bdf8;
+}

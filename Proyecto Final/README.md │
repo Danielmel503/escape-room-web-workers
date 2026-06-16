@@ -1,0 +1,87 @@
+#  Escape Room - Web Workers Project
+
+Proyecto final desarrollado para la simulación de un Escape Room interactivo utilizando tecnologías web modernas.
+
+
+## Descripción
+
+Este proyecto simula un sistema de misión donde el usuario debe completar 5 niveles:
+
+###  Nivel 1 - Geolocalización
+- Obtención de ubicación del usuario usando `navigator.geolocation`
+- Visualización de coordenadas en pantalla
+
+###  Nivel 2 - Mapa interactivo
+- Uso de Canvas para dibujar un mapa
+- Representación de cuadrícula
+- Marcador de ubicación del usuario
+
+### Nivel 3 - Cámara
+- Acceso a la cámara con `getUserMedia`
+- Captura de imagen en tiempo real
+- Guardado en `LocalStorage`
+- Registro de fecha y hora de captura
+
+### Nivel 4 - Web Worker (20,000 registros)
+- Simulación de procesamiento de sensores
+- Uso de Web Workers para evitar bloqueo de la interfaz
+- Cálculo de estadísticas:
+  - Temperatura promedio
+  - Humedad promedio
+  - Valores máximos y mínimos
+
+###  Nivel 5 - Web Worker (250,000 registros)
+- Procesamiento masivo de datos con Web Worker
+- Filtrado de registros negativos
+- Generación de estadísticas finales
+- Exportación de datos en formato JSON
+- Medición del tiempo de procesamiento
+
+---
+
+## Tecnologías utilizadas
+
+- HTML5
+- CSS3
+- JavaScript
+- Canvas API
+- Geolocation API
+- MediaDevices API (Cámara)
+- LocalStorage
+- Web Workers
+- Performance API
+
+---
+
+##  Estructura del proyecto
+/proyecto
+│
+├── index.html
+├── css/
+│ └── style.css
+│
+├── js/
+│ ├── script.js
+│ ├── workerNivel4.js
+│ └── workerNivel5.js
+│
+└── assets/ (opcional)
+
+##  Objetivo del proyecto
+
+Demostrar el uso de tecnologías web avanzadas, especialmente el uso de Web Workers para el procesamiento de grandes volúmenes de datos sin bloquear la interfaz del usua
+
+##  Autores
+
+Proyecto desarrollado como parte de evaluación académica de desarrollo web por 
+los alumnos 
+
+Victor Daniel Melgar Miranda MM21098
+William Ernesto Cerna Salazar CS23022
+Fabio Alexander Leiva Thez LT22004
+Mario René Valladares Trigueros VT21098
+
+
+## Nota
+
+El sistema mantiene la interfaz interactiva mientras ejecuta procesos intensivos gracias a Web Workers.
