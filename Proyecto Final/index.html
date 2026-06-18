@@ -4,225 +4,153 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Cámara de los Cinco Desafíos</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="ccs/style.css">
 </head>
-<body>
+<body class="cyber-bg d-flex align-items-center justify-content-center vh-100">
 
-<div class="container py-5">
+    <div class="cyber-frame container position-relative p-4 p-md-5 text-center">
+        
+        <div class="ui-widget ui-left position-absolute top-0 start-0 m-3 d-none d-lg-block text-start">
+            <ul class="list-unstyled mb-0" id="hud-levels">
+                <li id="hud-l1" class="mb-1"><span class="led-dot"></span> DESAFÍO 1: EL GUARDIÁN DE LA UBICACIÓN </li>
+                <li id="hud-l2" class="mb-1"><span class="led-dot"></span> DESAFÍO 2: EL CARTÓGRAFO PERDIDO</li>
+                <li id="hud-l3" class="mb-1"><span class="led-dot"></span> DESAFÍO 3: LA EVIDENCIA DEL EXPLORADOR </li>
+                <li id="hud-l4" class="mb-1"><span class="led-dot"></span> DESAFÍO 4: EL NÚCLEO DE PROCESAMIENTO</li>
+                <li id="hud-l5" class="mb-1"><span class="led-dot"></span> DESAFÍO 5: EL PORTAL CUÁNTICO</li>
+            </ul>
+        </div>
 
-    <!-- Pantalla de inicio -->
-    <section id="inicio">
+        <div class="ui-widget ui-right position-absolute top-0 end-0 m-3 d-none d-sm-block text-end">
+            <div class="system-status text-uppercase">ESTADO: <span class="text-info">EN LINEA</span></div>
+            <div class="system-time mt-1 font-monospace">TIEMPO EJEC: <span id="timer" class="text-warning">00:00:00</span></div>
+        </div>
 
-        <h1 class="text-center mb-4">
-            La Cámara de los Cinco Desafíos
-        </h1>
-
-        <p class="text-center">
-            Recupera el acceso a la base de datos
-            de la ciudad inteligente.
-        </p>
-
-        <div class="text-center">
-            <button id="btnIniciar"
-                    class="btn btn-primary">
-                Iniciar Misión
+        <section id="inicio" class="view-section w-100">
+            <h1 class="cyber-title mb-4">La Cámara de los Cinco Desafíos</h1>
+            <p class="cyber-subtitle mb-5 mx-auto opacity-75 max-w-600">
+                Recupera el acceso a la base de datos de la ciudad inteligente.
+            </p>
+            <div class="divider-line mb-5"></div>
+            <button id="btnIniciar" class="btn btn-cyber btn-lg px-5 py-3">
+                Iniciar Mision
             </button>
-        </div>
+        </section>
 
-    </section>
+        <section id="nivel1" class="view-section d-none w-100">
+            <h2 class="cyber-title-level mb-3">Nivel 1: El Guardian de la Ubicacion</h2>
+            <p class="text-light">Obten tu ubicacion actual para desbloquear el siguiente desafio.</p>
+            
+            <div class="card bg-cyber-card border-secondary mx-auto mb-4 p-4 max-w-600">
+                <button id="btnUbicacion" class="btn btn-outline-cyan w-100 py-3 mb-3">
+                    Obtener Ubicacion
+                </button>
+                <div id="resultadoUbicacion" class="mt-2 text-start"></div>
+            </div>
 
-    <!-- NIVEL 1 -->
-    <section id="nivel1" class="d-none">
+            <button id="btnNivel2" class="btn btn-cyber mt-3" disabled>
+                Continuar al Nivel 2
+            </button>
+        </section>
 
-        <h2>Nivel 1: El Guardián de la Ubicación</h2>
+        <section id="nivel2" class="view-section d-none w-100">
+            <h2 class="cyber-title-level mb-3">Nivel 2: El Cartógrafo Perdido</h2>
+            <p class="text-light">Dibuja el mapa y marca tu ubicacion.</p>
+            
+            <div class="d-flex flex-column align-items-center mb-3">
+                <div class="canvas-container p-2 border border-info rounded mb-3 bg-dark">
+                    <canvas id="mapaCanvas" width="700" height="400" class="img-fluid"></canvas>
+                </div>
+                <button id="btnDibujarMapa" class="btn btn-outline-purple px-4 py-2">
+                    Dibujar Mapa
+                </button>
+            </div>
 
-        <p>
-            Obtén tu ubicación actual para
-            desbloquear el siguiente desafío.
-        </p>
+            <div id="mensajeMapa" class="max-w-600 mx-auto text-start mt-3"></div>
+            
+            <button id="btnNivel3" class="btn btn-cyber mt-3" disabled>
+                Continuar al Nivel 3
+            </button>
+        </section>
 
-        <button id="btnUbicacion"
-                class="btn btn-success">
-            Obtener Ubicación
-        </button>
+        <section id="nivel3" class="view-section d-none w-100">
+            <h2 class="cyber-title-level mb-3">Nivel 3: La Evidencia del Explorador</h2>
+            <p class="text-light">Activa la camara y captura una fotografia.</p>
 
-        <div id="resultadoUbicacion"
-             class="mt-3">
-        </div>
+            <div class="row g-3 justify-content-center mb-3">
+                <div class="col-12 col-md-5">
+                    <div class="p-2 border border-secondary rounded bg-black">
+                        <video id="video" width="100%" height="auto" autoplay class="rounded bg-dark"></video>
+                    </div>
+                    <button id="btnCamara" class="btn btn-outline-cyan w-100 mt-2">Activar Cámara</button>
+                </div>
+                <div class="col-12 col-md-5">
+                    <div class="p-2 border border-secondary rounded bg-black">
+                        <canvas id="fotoCanvas" width="500" height="350" class="img-fluid rounded bg-dark d-none"></canvas>
+                        <img id="fotoGuardada" class="img-fluid rounded d-block" alt="Vista previa de captura">
+                    </div>
+                    <button id="btnCapturar" class="btn btn-outline-warning w-100 mt-2">Capturar Foto</button>
+                </div>
+            </div>
 
-        <button id="btnNivel2"
-                class="btn btn-primary mt-3"
-                disabled>
-            Continuar al Nivel 2
-        </button>
+            <div id="infoFoto" class="max-w-600 mx-auto text-start mt-3"></div>
+            <div id="mensajeCamara" class="max-w-600 mx-auto text-start mt-3"></div>
 
-    </section>
-<!-- NIVEL 2 -->
-<section id="nivel2" class="d-none">
+            <button id="btnNivel4" class="btn btn-cyber mt-3" disabled>
+                Continuar al Nivel 4
+            </button>
+        </section>
 
-    <h2>Nivel 2: El Cartógrafo Perdido</h2>
+        <section id="nivel4" class="view-section d-none w-100">
+            <h2 class="cyber-title-level mb-3">Nivel 4: El Núcleo de Procesamiento</h2>
+            <p class="text-light">Sincroniza y procesa los flujos de datos entrantes.</p>
+            
+            <div class="card bg-cyber-card border-secondary mx-auto mb-4 p-4 max-w-600">
+                <button id="btnProcesar" class="btn btn-outline-cyan w-100 py-3 mb-4">
+                    Procesar Sensores
+                </button>
 
-    <p>
-        Dibuja el mapa y marca tu ubicación.
-    </p>
+                <div class="progress bg-dark border border-secondary mb-3" style="height: 25px;">
+                    <div id="barraProgreso" class="progress-bar progress-bar-striped progress-bar-animated bg-info font-monospace text-dark fw-bold" style="width:0%">
+                        0%
+                    </div>
+                </div>
 
-    <canvas
-        id="mapaCanvas"
-        width="700"
-        height="400"
-        class="border">
-    </canvas>
+                <div id="resultadoNivel4" class="text-start mt-4"></div>
+            </div>
 
-    <br><br>
+            <button id="btnNivel5" class="btn btn-cyber" disabled>
+                Continuar al Nivel 5
+            </button>
+        </section>
 
-    <button
-        id="btnDibujarMapa"
-        class="btn btn-success">
-        Dibujar Mapa
-    </button>
+        <section id="nivel5" class="view-section d-none w-100">
+            <h2 class="cyber-title-level mb-3">Nivel 5: El Portal Cuántico</h2>
+            <p class="text-light">Compresion final algoritmica para romper el cortafuegos.</p>
+            
+            <div class="card bg-cyber-card border-secondary mx-auto mb-4 p-4 max-w-600">
+                <button id="btnPortal" class="btn btn-danger w-100 py-3 mb-4 font-monospace fw-bold shadow-pulse">
+                    Procesar 250,000 Registros
+                </button>
 
-    <div id="mensajeMapa" class="mt-3"></div>
+                <div class="progress bg-dark border border-secondary mb-3" style="height: 25px;">
+                    <div id="barraNivel5" class="progress-bar progress-bar-striped progress-bar-animated bg-danger font-monospace text-dark fw-bold" style="width:0%">
+                        0%
+                    </div>
+                </div>
 
-    <button
-        id="btnNivel3"
-        class="btn btn-primary mt-3"
-        disabled>
-        Continuar al Nivel 3
-    </button>
+                <div id="resultadoNivel5" class="text-start mt-4"></div>
 
-</section>
-<!-- NIVEL 3 -->
-<section id="nivel3" class="d-none">
+                <button id="btnDescargar" class="btn btn-success w-100 mt-3 d-none fw-bold">
+                    Descargar JSON
+                </button>
+            </div>
+        </section>
 
-    <h2>Nivel 3: La Evidencia del Explorador</h2>
-
-    <p>
-        Activa la cámara y captura una fotografía.
-    </p>
-
-    <video
-        id="video"
-        width="500"
-        autoplay
-        class="border">
-    </video>
-
-    <br><br>
-
-    <button
-        id="btnCamara"
-        class="btn btn-success">
-        Activar Cámara
-    </button>
-
-    <button
-        id="btnCapturar"
-        class="btn btn-warning">
-        Capturar Foto
-    </button>
-
-    <br><br>
-
-    <canvas
-        id="fotoCanvas"
-        width="500"
-        height="350"
-        class="border">
-    </canvas>
-
-    <br><br>
-
-    <img
-        id="fotoGuardada"
-        class="img-fluid">
-    <div
-         id="infoFoto"
-         class="mt-3">
-     </div>
-
-    <div id="mensajeCamara" class="mt-3"></div>
-
-    <button
-        id="btnNivel4"
-        class="btn btn-primary mt-3"
-        disabled>
-        Continuar al Nivel 4
-    </button>
-
-
-    </section>
-
-<!-- NIVEL 4 -->
-<section id="nivel4" class="d-none">
-
-    <h2>Nivel 4: El Núcleo de Procesamiento</h2>
-
-    <button
-        id="btnProcesar"
-        class="btn btn-success">
-        Procesar Sensores
-    </button>
-
-    <div class="progress mt-3">
-        <div
-            id="barraProgreso"
-            class="progress-bar"
-            style="width:0%">
-            0%
-        </div>
     </div>
 
-    <div
-        id="resultadoNivel4"
-        class="mt-4">
-    </div>
-
-    <button
-        id="btnNivel5"
-        class="btn btn-primary mt-3"
-        disabled>
-        Continuar al Nivel 5
-    </button>
-
-</section>
-
-<section id="nivel5" class="d-none">
-
-    <h2>Nivel 5: El Portal Cuántico</h2>
-
-    <button
-        id="btnPortal"
-        class="btn btn-danger">
-        Procesar 250,000 Registros
-    </button>
-
-    <div class="progress mt-3">
-        <div
-            id="barraNivel5"
-            class="progress-bar"
-            style="width:0%">
-            0%
-        </div>
-    </div>
-
-    <div
-        id="resultadoNivel5"
-        class="mt-4">
-    </div>
-
-    <button
-        id="btnDescargar"
-        class="btn btn-success mt-3 d-none">
-        Descargar JSON
-    </button>
-
-</section>
-</div>
-
-<script src="js/script.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
