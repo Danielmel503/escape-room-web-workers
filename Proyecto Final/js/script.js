@@ -123,11 +123,11 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillStyle = "#ffffff";
         
         ctx.font = "bold 16px 'Share Tech Mono', monospace";
-        ctx.fillText("MAPA TÁCTICO DE LA SMART CITY", 30, 35);
+        ctx.fillText("MAPA TACTICO DE LA SMART CITY", 30, 35);
 
         // Rectángulo contenedor
         ctx.strokeStyle = "rgba(0, 243, 255, 0.4)";
-        ctx.strokeRect(50, 60, 640, 250);
+        ctx.strokeRect(30, 60, 640, 250);
 
         // Cuadrícula Vectorial
         ctx.strokeStyle = "rgba(0, 243, 255, 0.1)";
@@ -145,7 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let x = ((lonVal + 180) / 360) * 600 + 30;
         let y = ((90 - latVal) / 180) * 250 + 60;
 
-        // Asegurar límites dentro del rectángulo
         x = Math.max(40, Math.min(650, x));
         y = Math.max(70, Math.min(290, y));
 
@@ -334,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (resultadoNivel5) {
                 resultadoNivel5.innerHTML = `
                     <div class="alert alert-success bg-dark border-success text-light p-3 font-monospace">
-                        <h4 class="text-success">👑 ¡ACCESO CONCEDIDO AL COMPLEJO!</h4>
+                        <h4 class="text-success">¡ACCESO CONCEDIDO AL COMPLEJO!</h4>
                         <p class="mb-1">• Bloques Válidos Procesados: <strong>${resultadoFinal.registrosValidos}</strong></p>
                         <p class="mb-1">• Promedio General Métrico: <strong>${resultadoFinal.promedioGeneral}</strong></p>
                         <p class="mb-1 text-truncate">• Top 10 Temperaturas: <span class="text-warning">${resultadoFinal.topTemperaturas.map(t => t.temperatura).join(", ")}</span></p>
